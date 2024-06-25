@@ -43,10 +43,10 @@ Exec=soffice --infilter="impress_pdf_import" --convert-to pptx:"Impress MS Power
 Name=JPEG
 Icon=/usr/share/icons/convert_pdf/icon_jpg.png
 #Converti senza importare il nome, con output con lo stesso nome
-Exec=pdftoppm -jpeg %f %f; /usr/bin/notify-send -u critical --app-name="Convert JPEG" --icon="/usr/share/icons/convert_pdf/icon_jpg.png" "Convert JPEG successfully" "$(basename %f)"
+Exec=pdftoppm -r 300 -jpeg %f %f; /usr/bin/notify-send -u critical --app-name="Convert JPEG" --icon="/usr/share/icons/convert_pdf/icon_jpg.png" "Convert JPEG successfully" "$(basename %f)"
 
 
 [Desktop Action png]
 Name=PNG
 Icon=/usr/share/icons/convert_pdf/icon_png.png
-Exec=pdftoppm -png %f %f; /usr/bin/notify-send -u critical --app-name="Convert png" --icon="/usr/share/icons/convert_pdf/icon_png.png" "Convert PNG successfully" "$(basename %f)"
+Exec=pdftoppm -r 300 -png %f %f; /usr/bin/notify-send -u critical --app-name="Convert png" --icon="/usr/share/icons/convert_pdf/icon_png.png" "Convert PNG successfully" "$(basename %f)"
