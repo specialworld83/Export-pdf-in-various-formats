@@ -1,4 +1,13 @@
-# require: notify-send; libreoffice
+#
+# Copyright (C) 2024  Codelinsoft <info@codelinsoft.it>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of# require: notify-send; libreoffice
 #
 # Calogero Scarnà 2024
 #
@@ -43,6 +52,63 @@ Exec=soffice --infilter="impress_pdf_import" --convert-to pptx:"Impress MS Power
 Name=JPEG
 Icon=/usr/share/icons/convert_pdf/icon_jpg.png
 #Converti senza importare il nome, con output con lo stesso nome
+Exec=pdftoppm -r 300 -jpeg %f %f; /usr/bin/notify-send -u critical --app-name="Convert JPEG" --icon="/usr/share/icons/convert_pdf/icon_jpg.png" "Convert JPEG successfully" "$(basename %f)"
+
+
+[Desktop Action png]
+Name=PNG
+Icon=/usr/share/icons/convert_pdf/icon_png.png
+Exec=pdftoppm -r 300 -png %f %f; /usr/bin/notify-send -u critical --app-name="Convert png" --icon="/usr/share/icons/convert_pdf/icon_png.png" "Convert PNG successfully" "$(basename %f)"
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+# require: poppler; notify-send; libreoffice
+#
+# Version 1.4
+#
+
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/pdf;
+Icon=application-pdf
+Actions=odt;word;odp;powerpoint;jpg;png;
+X-KDE-Priority=TopLevel
+X-KDE-StartupNotify=false
+X-KDE-Submenu=Convert pdf to
+X-KDE-Submenu[it]= Converti pdf in
+X-KDE-Submenu[de]= PDF konvertieren in
+X-KDE-Submenu[fr]= Convertir un pdf en
+
+[Desktop Action odt]
+Name=ODT
+Icon=/usr/share/icons/convert_pdf/odt.png
+Exec=soffice --infilter="writer_pdf_import" --convert-to odt  %f %f;/usr/bin/notify-send -u critical --app-name="Convert ODT" --icon="/usr/share/icons/convert_pdf/odt.png" "Convert ODT successfully" "$(basename %f)"
+
+
+[Desktop Action word]
+Name=WORD 2007/365
+Icon=/usr/share/icons/convert_pdf/word_2007.png
+Exec=soffice --infilter="writer_pdf_import" --convert-to docx:"MS Word 2007 XML"  %f %f;/usr/bin/notify-send -u critical --app-name="Convert WORD 2007/365" --icon="/usr/share/icons/convert_pdf/word_2007.png" "Convert WORD 2007/365 successfully" "$(basename %f)"
+
+[Desktop Action odp]
+Name=ODP
+Icon=/usr/share/icons/convert_pdf/odp.png
+Exec=soffice --infilter="impress_pdf_import" --convert-to odp  %f %f;/usr/bin/notify-send -u critical --app-name="Convert ODP" --icon="/usr/share/icons/convert_pdf/odp.png" "Convert ODP successfully" "$(basename %f)"
+
+[Desktop Action powerpoint]
+Name=POWERPOINT 2007/365
+Icon=/usr/share/icons/convert_pdf/powerpoint_2007.png
+Exec=soffice --infilter="impress_pdf_import" --convert-to pptx:"Impress MS PowerPoint 2007 XML"  %f %f; /usr/bin/notify-send -u critical --app-name="Convert POWERPOINT 2007/365" --icon="/usr/share/icons/convert_pdf/powerpoint_2007.png" "Convert POWERPOINT 2007/365 successfully" "$(basename %f)"
+
+[Desktop Action jpg]
+Name=JPEG
+Icon=/usr/share/icons/convert_pdf/icon_jpg.png
 Exec=pdftoppm -r 300 -jpeg %f %f; /usr/bin/notify-send -u critical --app-name="Convert JPEG" --icon="/usr/share/icons/convert_pdf/icon_jpg.png" "Convert JPEG successfully" "$(basename %f)"
 
 
